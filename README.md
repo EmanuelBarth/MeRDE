@@ -15,7 +15,7 @@ with a shape parameter \(P_{xy} > 0\) and a scale paramter \(B_{xy} > 0\), resul
 
 where \(\Gamma(P_{xy})\) is the gamma function, evaluated at \(P_{xy}\). Figure [fig.merde:gamma<sub>p</sub>df] displays examples of probability density plots of gamma distributions.
 
-![image](https://github.com/EmanuelBarth/MeRDE/blob/master/gamma_pdf.pdf)
+![image](https://github.com/EmanuelBarth/MeRDE/blob/master/gamma_pdf.png)
 
 The mean \(\mu_{xy}\) and variance \(\sigma_{xy}\) of the random variable \(G_{xy}\) are defined as:
 
