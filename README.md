@@ -15,7 +15,7 @@ with a shape parameter \(P_{xy} > 0\) and a scale paramter \(B_{xy} > 0\), resul
 
 where \(\Gamma(P_{xy})\) is the gamma function, evaluated at \(P_{xy}\). Figure [fig.merde:gamma<sub>p</sub>df] displays examples of probability density plots of gamma distributions.
 
-![image](gamma_pdf) [fig.merde:gamma<sub>p</sub>df]
+![image](https://github.com/EmanuelBarth/MeRDE/gamma_pdf.pdf) [fig.merde:gamma<sub>p</sub>df]
 
 The mean \(\mu_{xy}\) and variance \(\sigma_{xy}\) of the random variable \(G_{xy}\) are defined as:
 
@@ -49,7 +49,7 @@ and
 
 With the above introduced random variables \(E\) and \(G\) as well as both parameter estimators \(\hat{P}\) and \(\hat{B}\) it is possible to model the gene expression strength of any given miRNA gene from small RNA-Seq data. However, the performances of the shape and scale estimators strongly depend on the available amount of data, *i.e.*, the number of independently measured count values for every gene in each condition. The higher the amount of biological replicates, the better perform \(\hat{P}\) and \(\hat{B}\). As previously mentioned in Section 4.4.1, the number of biological replicates per investigated condition for RNA-Seq experiments is typically limited, seldom exceeding five or more sequenced samples. To overcome this obstacle, we assume that genes sharing a similar mean expression strength also share a similar dispersion. With this assumption it is possible to cluster genes based on their mean expression strengths and use the available count data of all genes within each cluster respectively to estimate their common shape and scale parameters \(\hat{P}\) and \(\hat{B}\) (see Figure [fig.merde:cluster]).
 
-![image](./figs/merde/clusters1) [fig.merde:cluster]
+![image](https://github.com/EmanuelBarth/MeRDE/clusters1.jpg) [fig.merde:cluster]
 
 For every gene \(x\) we calculate its expression strength mean \(\mu_{x}\) as the empirical mean read count of all replicates of gene \(x\). And we define the *expression range* of every gene \(x\) as the interval \(R_x\):
 
@@ -86,6 +86,6 @@ After the outlier detection and the gene expression cluster correction we suppos
 
     and \(N_{x_{II}}\) being the number of count values of gene \(x\) under condition II.
 
-![image](./figs/merde/ablauf) [fig.merde:ablauf]
+![image](https://github.com/EmanuelBarth/MeRDE/ablauf.png) [fig.merde:ablauf]
 
 There is one exception to this procedure of hypothesis testing. If any given gene \(x\) has too few count values in its corresponding expression cluster \(C(x)\) to calculate good estimators \(\hat{P}_x\) and \(\hat{B}_x\) for its shape and scale parameter, a different approach is used to calculate the respective p-Value. Due to the negative exponential distribution of the expressions strengths in small RNA-Seq data sets, only few miRNA genes with exceptional strong expression are affected by that. As suggest by Qin *et al.* , a cubic root transformation is applied to the count values of the concerning gene \(x\), but instead of a normal t-Test to calculate the p-Value we use Welsch’s t-Test, because we cannot assume an equal variance in the count values of both biological conditions or equal sample sizes . Again, defining how many count values are sufficient to estimate \(\hat{P}_x\) and \(\hat{B}_x\) is debatable, but we recommend to have at least 20 valid count values for any gene \(x\).
