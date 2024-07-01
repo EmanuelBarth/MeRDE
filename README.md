@@ -29,7 +29,7 @@ Based on this, we further assume that the estimated expression strength $$E_{xy}
 
 $$E_{xy} = G_{xy} \cdot S_y$$
 
-When fitting our model to data, we expect this data to be a $x \times y$ count matrix, where $x = 1 \dots n$ is the number of genes, $y = 1 \dots m$ the number of samples and $g_{xy}$ the count value of gene $x$ in sample $y$. Library size factors are necessary to normalize RNA-Seq libraries in respect to their sequencing depths, or in other words, to equalize the total amount of reads between sequencing libraries that are compared. The calculation of the size factor estimators $\hat{s}_{y}$ is based on all libraries $y = 1 \dots m$ that are part of a comparison and is performed similarly as suggested by Love *et al.*:
+When fitting our model to data, we expect this data to be a $x \times y$ count matrix, where $x = 1 \dots n$ is the number of genes, $y = 1 \dots m$ the number of samples and $g_{xy}$ the count value of gene $x$ in sample $y$. Library size factors are necessary to normalize RNA-Seq libraries in respect to their sequencing depths, or in other words, to equalize the total amount of reads between sequencing libraries that are compared. The calculation of the size factor estimators $\hat{s}_{y}$ is based on all libraries $y = 1 \dots m$ that are part of a comparison and is performed similarly as suggested by Love et al.:
 
 $$\hat{s}_{y} = \underset{x}{median} \dfrac{g_{xy}}{(\prod_{i = 1}^{m} g_{xi})^{1/m}}.$$
 
