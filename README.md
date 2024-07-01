@@ -47,7 +47,7 @@ $$t = ln\begin{pmatrix}\dfrac{\sum_{y \in c(A)}g_{xy}}{r}\end{pmatrix} - \begin{
 
 and
 
-$$\hat{B}_{xy} = \dfrac{1}{r\hat{P}_{xy}} \cdot  \sum_{y \in c(A)}g_{xy}.$$
+$$\hat{B}\_{xy} = \dfrac{1}{r\hat{P}\_{xy}} \cdot  \sum_{y \in c(A)}g_{xy}.$$
 
 ### Building gene expression clusters
 
@@ -74,15 +74,15 @@ If only single outliers are present within an expression cluster $C(x)$ its disp
 
 ### Hypothesis testing
 
-After the outlier detection and the gene expression cluster correction we suppose that we have good estimators $\hat{P}_x$ and $\hat{B}_x$ for every gene $x$ for two biological conditions I and II. That means we can now model every gene $x$ as a gamma distributed random variable, depending on its condition: $\Gamma(\hat{P}_{x_{I}}, \hat{B}_{x_{I}})$ and $\Gamma(\hat{P}_{x_{II}}, \hat{B}_{x_{II}})$. To evaluate if any gene $x$ is differentially expressed, *i.e.*, the alternative hypothesis $\mu_{x_{I}} \ne \mu_{x_{II}}$ is more likely than the null hypothesis $\mu_{x_{I}} = \mu_{x_{II}}$, we can calculate the probability that the value $\mu_{x_{I}}$ was drawn from the distribution spanned by $\Gamma(\hat{P}_{x_{II}}, \hat{B}_{x_{II}})$ (and vice versa). In others words, we calculate the likelihood of drawing the mean count value of gene $x$ from one condition given the approximated count distribution for the same gene under the second condition. To obtain the respective p-Value we perform three simple steps (see Figure [fig.merde:ablauf]):
+After the outlier detection and the gene expression cluster correction we suppose that we have good estimators $\hat{P}\_x$ and $\hat{B}\_x$ for every gene $x$ for two biological conditions I and II. That means we can now model every gene $x$ as a gamma distributed random variable, depending on its condition: $\Gamma(\hat{P}\_{x_{I}}, \hat{B}\_{x_{I}})$ and $\Gamma(\hat{P}\_{x_{II}}, \hat{B}\_{x_{II}})$. To evaluate if any gene $x$ is differentially expressed, *i.e.*, the alternative hypothesis $\mu_{x_{I}} \ne \mu_{x_{II}}$ is more likely than the null hypothesis $\mu_{x_{I}} = \mu_{x_{II}}$, we can calculate the probability that the value $\mu_{x_{I}}$ was drawn from the distribution spanned by $\Gamma(\hat{P}\_{x_{II}}, \hat{B}\_{x_{II}})$ (and vice versa). In others words, we calculate the likelihood of drawing the mean count value of gene $x$ from one condition given the approximated count distribution for the same gene under the second condition. To obtain the respective p-Value we perform three simple steps (see Figure [fig.merde:ablauf]):
 
-1.  Standardization of the gamma distribution spanned by $\Gamma(\hat{P}_{x_{I}}, \hat{B}_{x_{I}})$ by normalizing the scale parameter $\hat{B}_{x_{I}}$ with $\sigma_{x_{I}}$ to obtain $\Gamma(\hat{P}_{x_{I}}, \dfrac{\hat{B}_{x_{I}}}{\sigma_{x_{I}}})$.
+1.  Standardization of the gamma distribution spanned by $\Gamma(\hat{P}\_{x_{I}}, \hat{B}\_{x_{I}})$ by normalizing the scale parameter $\hat{B}\_{x_{I}}$ with $\sigma_{x_{I}}$ to obtain $\Gamma(\hat{P}\_{x_{I}}, \dfrac{\hat{B}\_{x_{I}}}{\sigma_{x_{I}}})$.
 
-2.  Shift of the standardized gamma distribution by $\beta$ to obtain $\Gamma(\hat{P}_{x_{I}}, \beta, \dfrac{\hat{B}_{x_{I}}}{\sigma_{x_{I}}})$, because negative values are not well defined for gamma distributions.
+2.  Shift of the standardized gamma distribution by $\beta$ to obtain $\Gamma(\hat{P}\_{x_{I}}, \beta, \dfrac{\hat{B}\_{x_{I}}}{\sigma_{x_{I}}})$, because negative values are not well defined for gamma distributions.
 
 3.  Calculation of the p-Value by:
 
-    $$\text{p-Value} = 1 - \int_{-z_{x_{II}}+\beta}^{z_{x_{II}}+\beta} \Gamma(\hat{P}_{x_{I}}, \beta, \dfrac{\hat{B}_{x_{I}}}{\sigma_{x_{I}}}) dz_{x_{II}}$$
+    $$\text{p-Value} = 1 - \int_{-z_{x_{II}}+\beta}^{z_{x_{II}}+\beta} \Gamma(\hat{P}\_{x_{I}}, \beta, \dfrac{\hat{B}\_{x_{I}}}{\sigma_{x_{I}}}) dz_{x_{II}}$$
 
     with the z-Values being
 
