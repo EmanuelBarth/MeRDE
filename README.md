@@ -8,42 +8,42 @@ $$G_{xy}\sim\Gamma(P_{xy}, B_{xy}),$$
 
 with a shape parameter $P_{xy} > 0$ and a scale paramter $B_{xy} > 0$, resulting in non-negative read count values. Thus, the respective probability density function $f_{xy}$ is:
 
-$$[f_{xy}(z) = \begin{cases}
+$$f_{xy}(z) = \begin{cases}
     \dfrac{B_{xy}^{P_{xy}}}{\Gamma(P_{xy})} \cdot z^{P_{xy}-1} \cdot e^{-B_{xy}z}, & z > 0 \\
     0, & z \le 0
-    \end{cases}],$$
+    \end{cases},$$
 
-where $\Gamma(P_{xy})$ is the gamma function, evaluated at $P_{xy}$. Figure [fig.merde:gamma<sub>p</sub>df] displays examples of probability density plots of gamma distributions.
+where $\Gamma(P_{xy})$ is the gamma function, evaluated at $P_{xy}$. The following figure displays examples of probability density plots of gamma distributions.
 
 ![image](https://github.com/EmanuelBarth/MeRDE/blob/master/gamma_pdf.png)
 
-The mean $$\mu_{xy}$$ and variance $$\sigma_{xy}$$ of the random variable $$G_{xy}$$ are defined as:
+The mean $\mu_{xy}$ and variance $\sigma_{xy}$ of the random variable $G_{xy}$ are defined as:
 
-\[\mu_{xy} = P_{xy} \cdot B_{xy}\] \[\sigma_{xy} = P_{xy} \cdot B_{xy}^{2}\]
+$$\mu_{xy} = P_{xy} \cdot B_{xy}\] \[\sigma_{xy} = P_{xy} \cdot B_{xy}^{2}$$
 
-Based on this, we further assume that the estimated expression strength \(E_{xy}\) of gene \(x\) in sample \(y\) is the product of our modeled gene count and a library-specific size factor \(S_y\):
+Based on this, we further assume that the estimated expression strength $$E_{xy}$$ of gene *x* in sample *y* is the product of our modeled gene count and a library-specific size factor $S_y$:
 
-\[E_{xy} = G_{xy} \cdot S_y\]
+$$E_{xy} = G_{xy} \cdot S_y$$
 
-When fitting our model to data, we expect this data to be a \(x \times y\) count matrix, where \(x = 1 \dots n\) is the number of genes, \(y = 1 \dots m\) the number of samples and \(g_{xy}\) the count value of gene \(x\) in sample \(y\). Library size factors are necessary to normalize RNA-Seq libraries in respect to their sequencing depths, or in other words, to equalize the total amount of reads between sequencing libraries that are compared. The calculation of the size factor estimators \(\hat{s}_{y}\) is based on all libraries \(y = 1 \dots m\) that are part of a comparison and is performed similarly as suggested by :
+When fitting our model to data, we expect this data to be a $x \times y$ count matrix, where $x = 1 \dots n$ is the number of genes, $y = 1 \dots m$ the number of samples and $g_{xy}$ the count value of gene $x$ in sample $y$. Library size factors are necessary to normalize RNA-Seq libraries in respect to their sequencing depths, or in other words, to equalize the total amount of reads between sequencing libraries that are compared. The calculation of the size factor estimators $\hat{s}_{y}$ is based on all libraries $y = 1 \dots m$ that are part of a comparison and is performed similarly as suggested by Love *et al.*:
 
-\[\hat{s}_{y} = \underset{x}{median} \dfrac{g_{xy}}{(\prod_{i = 1}^{m} g_{xi})^{1/m}}\].
+$$\hat{s}_{y} = \underset{x}{median} \dfrac{g_{xy}}{(\prod_{i = 1}^{m} g_{xi})^{1/m}}.$$
 
-Subsequently, we can estimate the average expression strength \(e_{x,c(A)}\) of any gene \(x\) of some condition \(A\) with \(c(A)\) being all sampled read libraries of condition \(A\) and \(|c(A)| = r \le m\):
+Subsequently, we can estimate the average expression strength $e_{x,c(A)}$ of any gene *x* of some condition *A* with $c(A)$ being all sampled read libraries of condition *A* and $|c(A)| = r \le m$:
 
-\[e_{x,c(A)} = \dfrac{\sum_{y \in c(A)} e_{xy}}{r} = \dfrac{\sum_{y \in c(A)} g_{xy} \cdot \hat{s}_{y}}{r}.\]
+$$e_{x,c(A)} = \dfrac{\sum_{y \in c(A)} e_{xy}}{r} = \dfrac{\sum_{y \in c(A)} g_{xy} \cdot \hat{s}_{y}}{r}.$$
 
-Since we do not know the shape and rate paramters \(P_{xy}\) and \(B_{xy}\) of our gene expression strengths \(E_{xy}\), we have to estimate them based on the given data. Fortunately, there exist good maximum-likelihood estimators for both parameters (within 1.5% of the correct value) \(\hat{P}_{xy}\) and \(\hat{B}_{xy}\), that can be calculated efficiently :
+Since we do not know the shape and rate paramters $P_{xy}$ and $B_{xy}$ of our gene expression strengths $E_{xy}$, we have to estimate them based on the given data. Fortunately, there exist good maximum-likelihood estimators for both parameters (within 1.5% of the correct value) $\hat{P}_{xy}$ and $\hat{B}_{xy}$, that can be calculated efficiently:
 
-\[\hat{P}_{xy} \approx \dfrac{3 - t + \sqrt{(t - 3)^2 + 24t}}{12t}\]
+$$\hat{P}_{xy} \approx \dfrac{3 - t + \sqrt{(t - 3)^2 + 24t}}{12t}$$
 
 with
 
-\[t = ln\begin{pmatrix}\dfrac{\sum_{y \in c(A)}g_{xy}}{r}\end{pmatrix} - \begin{pmatrix}\dfrac{\sum_{y \in c(A)}ln(g_{xy})}{r}\end{pmatrix}\]
+$$t = ln\begin{pmatrix}\dfrac{\sum_{y \in c(A)}g_{xy}}{r}\end{pmatrix} - \begin{pmatrix}\dfrac{\sum_{y \in c(A)}ln(g_{xy})}{r}\end{pmatrix}$$
 
 and
 
-\[\hat{B}_{xy} = \dfrac{1}{r\hat{P}_{xy}} \cdot  \sum_{y \in c(A)}g_{xy}.\]
+$$\hat{B}_{xy} = \dfrac{1}{r\hat{P}_{xy}} \cdot  \sum_{y \in c(A)}g_{xy}.$$
 
 ### Building gene expression clusters
 
