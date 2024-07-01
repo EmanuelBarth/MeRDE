@@ -2,18 +2,18 @@
 This is MeRDE, a statisticak tool to analyze microRNA expression data received from RNA-Seq libraries.
 
 ## MeRDE: A new statistical model to infer differential expression of small RNAs from read counts
-First, we assume that for every sample $y$ the amount of reads assigned to a any gene $x$ can be modeled by a gamma distributed random variable $G_{xy}$:
+First, we assume that for every sample y the amount of reads assigned to a any gene x can be modeled by a gamma distributed random variable $G_{xy}$:
 
-$$\[G_{xy}\sim\Gamma(P_{xy}, B_{xy}) ,\]$$
+$$G_{xy}\sim\Gamma(P_{xy}, B_{xy})$$,
 
-with a shape parameter $$P_{xy} > 0$$ and a scale paramter $$B_{xy} > 0$$, resulting in non-negative read count values. Thus, the respective probability density function $$f_{xy}$$ is:
+with a shape parameter $P_{xy} > 0$ and a scale paramter $B_{xy} > 0$, resulting in non-negative read count values. Thus, the respective probability density function $f_{xy}$ is:
 
-$$\[f_{xy}(z) = \begin{cases}
+$$f_{xy}(z) = \begin{cases}
     \dfrac{B_{xy}^{P_{xy}}}{\Gamma(P_{xy})} \cdot z^{P_{xy}-1} \cdot e^{-B_{xy}z}, & z > 0 \\
     0, & z \le 0
-    \end{cases},\]$$
+    \end{cases}$$,
 
-where $$\Gamma(P_{xy})$$ is the gamma function, evaluated at $$P_{xy}$$. Figure [fig.merde:gamma<sub>p</sub>df] displays examples of probability density plots of gamma distributions.
+where $\Gamma(P_{xy})$ is the gamma function, evaluated at $P_{xy}$. Figure [fig.merde:gamma<sub>p</sub>df] displays examples of probability density plots of gamma distributions.
 
 ![image](https://github.com/EmanuelBarth/MeRDE/blob/master/gamma_pdf.png)
 
