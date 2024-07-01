@@ -19,7 +19,11 @@ where $\Gamma(P_{xy})$ is the gamma function, evaluated at $P_{xy}$. The followi
 
 The mean $\mu_{xy}$ and variance $\sigma_{xy}$ of the random variable $G_{xy}$ are defined as:
 
-$$\mu_{xy} = P_{xy} \cdot B_{xy}$$ and $$\sigma_{xy} = P_{xy} \cdot B_{xy}^{2}$$
+$$\mu_{xy} = P_{xy} \cdot B_{xy}$$ 
+
+and 
+
+$$\sigma_{xy} = P_{xy} \cdot B_{xy}^{2}$$
 
 Based on this, we further assume that the estimated expression strength $$E_{xy}$$ of gene *x* in sample *y* is the product of our modeled gene count and a library-specific size factor $S_y$:
 
